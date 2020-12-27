@@ -5,7 +5,6 @@
 #include <time.h>
 
 /******************************************************************************
-  
 
 This program uses "brute force" algorithm which is often called trial and error method. Works on passwords that consist only of 2 uppercase letters and a 2 digit integer.
 
@@ -16,6 +15,7 @@ This program uses "brute force" algorithm which is often called trial and error 
     ./CrackAZ99 > 2.3.1.txt
 
 ******************************************************************************/
+
 int total_passwords = 4;
 
 char *encrypted_passwords[] = {
@@ -95,17 +95,20 @@ int main()
   struct timespec start, finish;
   long long int time_elapsed;
 
-  clock_gettime(CLOCK_MONOTONIC, &start);
-  //loops for encrypted passwords
-  for (k = 0; k < total_passwords; k < k++)
+  for (int i = 0; i < 10; i++)
   {
-    crack(encrypted_passwords[k]);
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    //loops for encrypted passwords
+    for (k = 0; k < total_passwords; k < k++)
+    {
+      crack(encrypted_passwords[k]);
+    }
+
+    clock_gettime(CLOCK_MONOTONIC, &finish);
+    time_difference(&start, &finish, &time_elapsed);
+    printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
+           (time_elapsed / 1.0e9));
   }
-
-  clock_gettime(CLOCK_MONOTONIC, &finish);
-  time_difference(&start, &finish, &time_elapsed);
-  printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
-         (time_elapsed / 1.0e9));
-
   return 0;
 }

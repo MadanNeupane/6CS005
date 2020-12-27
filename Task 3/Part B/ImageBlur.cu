@@ -9,11 +9,11 @@
     nvcc -o ImageBlur ImageBlur.cu 
 
   Run the program:
-	./ImageBlur > 3.2.txt
+	./ImageBlur
 
 ******************************************************************************/
 
-__global__ void blur(unsigned char * gpu_image_output, unsigned char * gpu_image_input, int width, int height)
+__global__ void blur(unsigned char *gpu_image_output, unsigned char *gpu_image_input, int width, int height)
 {
 
     int count = 1;
@@ -175,8 +175,8 @@ int main(int argc, char **argv)
     const int ARRAY_SIZE = width * height * 4;
     const int ARRAY_BYTES = ARRAY_SIZE * sizeof(unsigned char);
 
-    unsigned char * host_image_input = (unsigned char *)malloc(ARRAY_SIZE * 4);
-    unsigned char * host_image_output = (unsigned char *)malloc(ARRAY_SIZE * 4);
+    unsigned char *host_image_input = (unsigned char *)malloc(ARRAY_SIZE * 4);
+    unsigned char *host_image_output = (unsigned char *)malloc(ARRAY_SIZE * 4);
 
     for (int i = 0; i < ARRAY_SIZE; i++)
     {

@@ -5,8 +5,8 @@
 #include <time.h>
 
 /******************************************************************************
-This program uses "brute force" algorithm which is often called trial and error method. Works on passwords that consist only of 3 uppercase letters and a 2 digit integer.
 
+This program uses "brute force" algorithm which is often called trial and error method. Works on passwords that consist only of 3 uppercase letters and a 2 digit integer.
 
   Compile the program:
     cc -o Three-Initials-Two-Digits Three-Initials-Two-Digits.c -lcrypt
@@ -14,8 +14,8 @@ This program uses "brute force" algorithm which is often called trial and error 
   Run the program:
     ./Three-Initials-Two-Digits > 2.3.3txt
 
-
 ******************************************************************************/
+
 int total_passwords = 4;
 
 char *three_initials[] = {
@@ -99,18 +99,21 @@ int main()
   struct timespec start, finish;
   long long int time_elapsed;
 
-  clock_gettime(CLOCK_MONOTONIC, &start);
-
-  //loops for encrypted passwords
-  for (k = 0; k < total_passwords; k < k++)
+  for (int i = 0; i < 10; i++)
   {
-    crack(three_initials[k]);
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
+    //loops for encrypted passwords
+    for (k = 0; k < total_passwords; k < k++)
+    {
+      crack(three_initials[k]);
+    }
+
+    clock_gettime(CLOCK_MONOTONIC, &finish);
+    time_difference(&start, &finish, &time_elapsed);
+    printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
+           (time_elapsed / 1.0e9));
   }
-
-  clock_gettime(CLOCK_MONOTONIC, &finish);
-  time_difference(&start, &finish, &time_elapsed);
-  printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
-         (time_elapsed / 1.0e9));
-
   return 0;
 }

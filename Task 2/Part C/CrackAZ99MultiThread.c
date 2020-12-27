@@ -13,9 +13,9 @@
 
   Run the program:
     ./CrackAZ99MultiThread > 2.3.5.txt
-
   
 ******************************************************************************/
+
 int total_passwords = 4;
 
 char *encrypted_passwords[] = {
@@ -151,14 +151,17 @@ int main(int argc, char *argv[])
   struct timespec start, finish;
   long long int time_elapsed;
 
-  clock_gettime(CLOCK_MONOTONIC, &start);
+  for (int i = 0; i < 10; i++)
+  {
 
-  crack();
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
-  clock_gettime(CLOCK_MONOTONIC, &finish);
-  time_difference(&start, &finish, &time_elapsed);
-  printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
-         (time_elapsed / 1.0e9));
+    crack();
 
+    clock_gettime(CLOCK_MONOTONIC, &finish);
+    time_difference(&start, &finish, &time_elapsed);
+    printf("Time Elapsed: %lldns or %0.9lfs\n", time_elapsed,
+           (time_elapsed / 1.0e9));
+  }
   return 0;
 }
